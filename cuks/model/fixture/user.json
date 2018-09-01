@@ -1,0 +1,17 @@
+[{
+  "_id": "admin",
+  "domain": "localhost",
+  "username": "admin",
+  "passwd": "test",
+  "first_name": "Mr",
+  "last_name": "Admin",
+  "active": true
+},{
+  "_id": "guest",
+  "domain": "localhost",
+  "username": "guest",
+  "passwd": "test",
+  "first_name": "Mr",
+  "last_name": "Guest",
+  "active": true
+}]

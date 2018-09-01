@@ -1,0 +1,16 @@
+{
+  "name": "@rappopo/cuk-auth",
+  "version": "0.0.2",
+  "description": "Rappopo CUK User Authentication",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ardhi Lukianto <ardhi@lukianto.com>",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^3.0.0",
+    "grant-koa": "^4.1.2",
+    "jsonwebtoken": "^8.3.0"
+  }
+}

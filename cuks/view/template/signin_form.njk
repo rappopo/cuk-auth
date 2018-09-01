@@ -1,0 +1,9 @@
+{% extends 'view:/layout' %}
+
+{% block content %}
+<form action="{{ url }}" method="POST">
+  {{ cmpt('formGroupInput', { label: 'Username', name: 'username', value: sessionFlash.username|d(ctx.query.username)|d('') }) }}
+  {{ cmpt('formGroupInput', { label: 'Password', name: 'passwd', type: 'password' }) }}
+  {{ cmpt('button', { title: 'Submit', type: 'submit' }) }}
+</form>
+{% endblock %}

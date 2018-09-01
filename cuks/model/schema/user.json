@@ -1,0 +1,56 @@
+{
+  "attributes": {
+    "created_at": { "type": "datetime" },
+    "updated_at": { "type": "datetime" },
+    "domain": {
+      "type": "string",
+      "maxLength": 50,
+      "validator": {
+        "required": true
+      }
+    },
+    "username": {
+      "type": "string",
+      "maxLength": 50,
+      "validator": {
+        "required": true,
+        "isAlphanumeric": true,
+        "isLength": { "min": 5, "max": "20" }
+      }
+    },
+    "passwd": {
+      "type": "string",
+      "validator": {
+        "required": true
+      }
+    },
+    "access_token": { "type": "text" },
+    "group_id": {
+      "type": "string"
+    },
+    "role": {
+      "type": "array"
+    },
+    "first_name": {
+      "type": "string",
+      "validator": {
+        "required": true,
+        "isAlphanumeric": true
+      }
+    },
+    "last_name": { "type": "string" },
+    "active": { "type": "boolean" }
+  },
+  "indexes": {
+    "uniq": { "column": ["domain", "username"], "unique": true },
+    "group_id": true
+  },
+  "behavior": {
+    "createdAt": "created_at",
+    "updatedAt": "updated_at"
+  },
+  "exclude": {
+    "update": ["username", "domain"],
+    "fullReplace": ["domain", "username", "passwd", "access_token", "active"]
+  }
+}
