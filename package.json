@@ -1,6 +1,6 @@
 {
   "name": "@rappopo/cuk-auth",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Rappopo CUK User Authentication",
   "main": "index.js",
   "scripts": {
@@ -8,6 +8,10 @@
   },
   "author": "Ardhi Lukianto <ardhi@lukianto.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rappopo/cuk-auth.git"
+  },
   "dependencies": {
     "bcrypt": "^3.0.0",
     "grant-koa": "^4.1.2",
