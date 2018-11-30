@@ -1,5 +1,10 @@
 ## Changelog
 
+### 0.0.4
+
+- Adding roles on default routes
+- Bug fix on rest routes
+
 ### 0.0.3
 
 - Adding README.md, LICENSE.md & CHANGELOG.md

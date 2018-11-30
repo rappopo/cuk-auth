@@ -2,7 +2,7 @@
   "_id": "admin",
   "domain": "localhost",
   "username": "admin",
-  "passwd": "test",
+  "passwd": "admin",
   "first_name": "Mr",
   "last_name": "Admin",
   "active": true
@@ -10,7 +10,7 @@
   "_id": "guest",
   "domain": "localhost",
   "username": "guest",
-  "passwd": "test",
+  "passwd": "guest",
   "first_name": "Mr",
   "last_name": "Guest",
   "active": true

@@ -15,7 +15,7 @@ module.exports = function (cuk) {
       new_passwd: attribPasswd
     }
     return new Promise((resolve, reject) => {
-      model.findOne(ctx.state.auth.user[idColumn])
+      model.findOne(ctx.auth.user[idColumn])
       .then(user => {
         let valid = helper('model:validateCustom')(_.pick(body, ['old_passwd', 'passwd']), attrib, true)
         if (valid instanceof Error) throw valid
@@ -23,7 +23,7 @@ module.exports = function (cuk) {
         if (!bcrypt.compareSync(body.old_passwd, user.data.passwd))
           err.old_passwd = ['mismatch']
         if (!_.isEmpty(err)) throw new CukModelValidationError(err)
-        return model.update(ctx.state.auth.user[idColumn], { passwd: body.new_passwd })
+        return model.update(ctx.auth.user[idColumn], { passwd: body.new_passwd })
       })
       .then(result => {
         resolve({
@@ -36,6 +36,9 @@ module.exports = function (cuk) {
 
   return {
     middleware: 'auth:jwt, auth:basic, auth:bearer, auth:check, role:check',
+    role: {
+      resourcePossession: 'own'
+    },
     method: {
       replaceSelf: changePassword,
       modifySelf: changePassword
