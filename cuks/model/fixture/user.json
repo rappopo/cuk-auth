@@ -1,6 +1,6 @@
 [{
   "_id": "admin",
-  "domain": "localhost",
+  "site": "*",
   "username": "admin",
   "passwd": "admin",
   "first_name": "Mr",
@@ -8,7 +8,7 @@
   "active": true
 },{
   "_id": "guest",
-  "domain": "localhost",
+  "site": "*",
   "username": "guest",
   "passwd": "guest",
   "first_name": "Mr",

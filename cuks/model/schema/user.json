@@ -2,7 +2,7 @@
   "attributes": {
     "created_at": { "type": "datetime" },
     "updated_at": { "type": "datetime" },
-    "domain": {
+    "site": {
       "type": "string",
       "maxLength": 50,
       "validator": {
@@ -42,7 +42,7 @@
     "active": { "type": "boolean" }
   },
   "indexes": {
-    "uniq": { "column": ["domain", "username"], "unique": true },
+    "uniq": { "column": ["site", "username"], "unique": true },
     "group_id": true
   },
   "behavior": {
@@ -50,7 +50,7 @@
     "updatedAt": "updated_at"
   },
   "exclude": {
-    "update": ["username", "domain"],
-    "fullReplace": ["domain", "username", "passwd", "access_token", "active"]
+    "update": ["username", "site"],
+    "fullReplace": ["site", "username", "passwd", "access_token", "active"]
   }
 }

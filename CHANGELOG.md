@@ -1,5 +1,13 @@
 ## Changelog
 
+### 0.0.6
+
+- Change site domain to site code
+
+### 0.0.5
+
+- Bug fix on bearer authentication
+
 ### 0.0.4
 
 - Adding roles on default routes

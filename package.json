@@ -1,6 +1,6 @@
 {
   "name": "@rappopo/cuk-auth",
-  "version": "0.0.4",
+  "version": "0.0.7",
   "description": "Rappopo CUK User Authentication",
   "main": "index.js",
   "scripts": {

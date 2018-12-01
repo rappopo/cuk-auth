@@ -17,10 +17,10 @@ module.exports = function (cuk) {
     handler: async ctx => {
       const cfg = _.get(cuk.pkg.auth, 'cfg.common', {})
       try {
-        const domain = _.get(ctx.state, 'site.domain', '*')
+        const site = _.get(ctx.state, 'site.code', '*')
         const { username, passwd } = ctx.request.body
         ctx.flash.set(ctx.request.body)
-        const user = await helper('auth:getValidUser')(domain, username, passwd)
+        const user = await helper('auth:getValidUser')(site, username, passwd)
         ctx.session.auth = setAuth(user, 'local')
         const url = helper('route:url')(_.get(cfg, 'method.local.redirectAfterSignin', 'app:get:home'), ctx)
         ctx.redirect(url)

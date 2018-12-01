@@ -9,12 +9,12 @@ module.exports = function (cuk) {
   return () => {
     return async (ctx, next) => {
       ctx.auth = ctx.auth || null
-      if (!_.isEmpty(ctx.state.auth)) return next()
+      if (!_.isEmpty(ctx.auth)) return next()
       const token = detectToken(ctx, 'bearer')
       if (!token) return next()
-      const domain = _.get(ctx, 'state.site.domain', '*')
+      const site = _.get(ctx, 'state.site.code', '*')
       try {
-        const user = await getUser({ domain: domain, access_token: token })
+        const user = await getUser({ site: site, access_token: token })
         ctx.auth = setAuth(user, 'bearer')
         return next()
       } catch (e) {
