@@ -1,6 +1,6 @@
 {
   "name": "@rappopo/cuk-auth",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Rappopo CUK User Authentication",
   "main": "index.js",
   "scripts": {
@@ -13,8 +13,7 @@
     "url": "git+https://github.com/rappopo/cuk-auth.git"
   },
   "dependencies": {
-    "bcrypt": "^3.0.0",
-    "grant-koa": "^4.1.2",
-    "jsonwebtoken": "^8.3.0"
+    "bcrypt": "^3.0.2",
+    "jsonwebtoken": "^8.4.0"
   }
 }

@@ -1,5 +1,13 @@
 ## Changelog
 
+### 0.0.8
+
+- Bug fix: change user password
+
+### 0.0.7
+
+- Bug fix: model definition still mentioned to domain column
+
 ### 0.0.6
 
 - Change site domain to site code

@@ -9,28 +9,26 @@ module.exports = function (cuk) {
     const body = ctx.request.body
     const model = helper('model:get')('auth:user')
     const idColumn = helper('model:getIdColumn')('auth:user')
-    const attribPasswd = _.cloneDeep(model.schema.attributes.passwd)
     let attrib = {
-      old_passwd: attribPasswd,
-      new_passwd: attribPasswd
+      old_passwd: _.cloneDeep(model.schema.attributes.passwd),
+      new_passwd: _.cloneDeep(model.schema.attributes.passwd)
     }
     return new Promise((resolve, reject) => {
       model.findOne(ctx.auth.user[idColumn])
-      .then(user => {
-        let valid = helper('model:validateCustom')(_.pick(body, ['old_passwd', 'passwd']), attrib, true)
-        if (valid instanceof Error) throw valid
-        let err = {}
-        if (!bcrypt.compareSync(body.old_passwd, user.data.passwd))
-          err.old_passwd = ['mismatch']
-        if (!_.isEmpty(err)) throw new CukModelValidationError(err)
-        return model.update(ctx.auth.user[idColumn], { passwd: body.new_passwd })
-      })
-      .then(result => {
-        resolve({
-          success: true
+        .then(user => {
+          let valid = helper('model:validateCustom')(_.pick(body, ['old_passwd', 'new_passwd']), attrib, true)
+          if (valid instanceof Error) throw valid
+          let err = {}
+          if (!bcrypt.compareSync(body.old_passwd, user.data.passwd)) err.old_passwd = ['mismatch']
+          if (!_.isEmpty(err)) throw new CukModelValidationError(err)
+          return model.update(ctx.auth.user[idColumn], { passwd: body.new_passwd })
         })
-      })
-      .catch(reject)
+        .then(result => {
+          resolve({
+            success: true
+          })
+        })
+        .catch(reject)
     })
   }
 
