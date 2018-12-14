@@ -1,5 +1,10 @@
 ## Changelog
 
+### 0.0.9
+
+- Break change: config root no longer use common & cuks.
+- Default connector reside on cuks folder
+
 ### 0.0.8
 
 - Bug fix: change user password

@@ -1,10 +1,10 @@
 'use strict'
 
 module.exports = function (cuk) {
-  const { _, helper } = cuk.pkg.core.lib
+  const { _, helper, config } = cuk.pkg.core.lib
 
   return (ctx, type) => {
-    const cfg = cuk.pkg.auth.cfg.common.method[type]
+    const cfg = _.get(config('auth'), 'method.' + type, {})
     let found = false
     let token
     if (cfg.detect.querystring) {

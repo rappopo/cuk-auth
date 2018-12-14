@@ -1,53 +1,42 @@
 {
-  "common": {
-    "bcryptSaltRounds": 10,
-    "exportedColumns": {
-      "user": ["username", "first_name", "last_name"]
-    },
-    "method": {
-      "basic": {
-        "allowMultiDetect": false,
-        "detect": {
-          "querystring": false,
-          "body": false,
-          "header": true
-        }
-      },
-      "bearer": {
-        "allowMultiDetect": false,
-        "algorithm": "sha256",
-        "detect": {
-          "querystring": "access_token",
-          "body": "access_token",
-          "header": true
-        }
-      },
-      "jwt": {
-        "allowMultiDetect": false,
-        "detect": {
-          "querystring": "jwt",
-          "body": "jwt",
-          "header": true
-        },
-        "secret": "54F9B677A30C26F1D786B91B86C59912FAFC4181E5C37A43741E8D6BADF7D56B",
-        "opts": {
-          "expiresIn": "24h"
-        }
-      },
-      "local": {
-        "redirectBeforeSignin": "auth:get:signin",
-        "redirectAfterSignin": "app:get:home",
-        "redirectAfterSignout": "app:get:home"
-      }
-    }
+  "bcryptSaltRounds": 10,
+  "exportedColumns": {
+    "user": ["username", "first_name", "last_name"]
   },
-  "cuks": {
-    "model": {
-      "connector": {
-        "default": {
-          "dab": "@rappopo/dab-memory"
-        }
+  "method": {
+    "basic": {
+      "allowMultiDetect": false,
+      "detect": {
+        "querystring": false,
+        "body": false,
+        "header": true
       }
+    },
+    "bearer": {
+      "allowMultiDetect": false,
+      "algorithm": "sha256",
+      "detect": {
+        "querystring": "access_token",
+        "body": "access_token",
+        "header": true
+      }
+    },
+    "jwt": {
+      "allowMultiDetect": false,
+      "detect": {
+        "querystring": "jwt",
+        "body": "jwt",
+        "header": true
+      },
+      "secret": "54F9B677A30C26F1D786B91B86C59912FAFC4181E5C37A43741E8D6BADF7D56B",
+      "opts": {
+        "expiresIn": "24h"
+      }
+    },
+    "local": {
+      "redirectBeforeSignin": "auth:get:signin",
+      "redirectAfterSignin": "app:get:home",
+      "redirectAfterSignout": "app:get:home"
     }
   }
 }
