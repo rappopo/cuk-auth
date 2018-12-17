@@ -2,7 +2,7 @@
 
 module.exports = function (cuk) {
   const { _, helper } = cuk.pkg.core.lib
-  const cfg = cuk.pkg.auth.cfg.common
+  const { cfg } = cuk.pkg.auth
   const { jwt } = cuk.pkg.auth.lib
   const getUser = require('./_get_user')(cuk)
   const detectToken = require('./_detect_token')(cuk)

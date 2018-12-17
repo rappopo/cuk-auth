@@ -1,7 +1,7 @@
 'use strict'
 
 module.exports = function (cuk) {
-  const { _, helper } = cuk.pkg.core.lib
+  const { _, helper, config } = cuk.pkg.core.lib
 
   return [{
     method: 'GET',
@@ -14,7 +14,7 @@ module.exports = function (cuk) {
     method: 'POST',
     middleware: 'auth:local, auth:check',
     handler: async ctx => {
-      const cfg = _.get(cuk.pkg.auth, 'cfg.common', {})
+      const cfg = config('auth')
       try {
         ctx.flash.set({ msg: "You've been successfully signed out!"})
         ctx.session.auth = null

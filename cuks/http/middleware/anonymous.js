@@ -6,7 +6,7 @@ module.exports = function (cuk) {
   return () => {
     return async (ctx, next) => {
       ctx.auth = ctx.auth || null
-      if (ctx.session.auth) {
+      if (ctx.session && ctx.session.auth) {
         ctx.auth = ctx.session.auth
       }
       if (_.isEmpty(ctx.auth)) return next()

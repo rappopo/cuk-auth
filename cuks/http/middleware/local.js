@@ -2,7 +2,7 @@
 
 module.exports = function (cuk) {
   const { helper } = cuk.pkg.core.lib
-  const cfg = cuk.pkg.auth.cfg.common
+  const { cfg } = cuk.pkg.auth
 
   return () => {
     return async (ctx, next) => {

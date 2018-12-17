@@ -16,7 +16,7 @@ module.exports = function (cuk) {
       if (valid instanceof Error) throw valid
       let query = {
         username: username.toLowerCase(),
-        domain: domain
+        site: domain
       }
       model.find({ query: query })
         .then(users => {

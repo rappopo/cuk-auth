@@ -1,7 +1,7 @@
 'use strict'
 
 module.exports = function (cuk) {
-  const { _, helper } = cuk.pkg.core.lib
+  const { _, helper, config } = cuk.pkg.core.lib
   const setAuth = require('../http/middleware/_set_auth')(cuk)
 
   return [{
@@ -15,7 +15,7 @@ module.exports = function (cuk) {
     method: 'POST',
     middleware: 'auth:anonymous',
     handler: async ctx => {
-      const cfg = _.get(cuk.pkg.auth, 'cfg.common', {})
+      const cfg = config('auth')
       try {
         const site = _.get(ctx.state, 'site.code', '*')
         const { username, passwd } = ctx.request.body
