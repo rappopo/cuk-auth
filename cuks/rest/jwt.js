@@ -1,7 +1,7 @@
 'use strict'
 
 module.exports = function (cuk) {
-  const { _, helper, moment } = cuk.pkg.core.lib
+  const { _, helper, moment, config } = cuk.pkg.core.lib
 
   return {
     middleware: 'auth:anonymous',
@@ -18,10 +18,13 @@ module.exports = function (cuk) {
             uname: user.username,
             hash: helper('core:makeHash')([user[idColumn], user.username, user.passwd])
           })
+          const now = moment()
+          const exp = helper('core:parseUnitOfTime')(_.get(config('auth'), 'method.jwt.opts.expiresIn', '24h'), true)
           return {
             success: true,
             data: {
-              created_at: moment().toISOString(),
+              created_at: now.toISOString(),
+              expires_in: now.add(exp, 's').toISOString(),
               token: token
             }
           }

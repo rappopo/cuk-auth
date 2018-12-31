@@ -4,6 +4,7 @@
 
 - Break change: config root no longer use common & cuks.
 - Default connector reside on cuks folder
+- Add expires_in on POST /api/jwt.json
 
 ### 0.0.8
 
