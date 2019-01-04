@@ -1,5 +1,4 @@
 [{
-  "_id": "admin",
   "site": "*",
   "username": "admin",
   "passwd": "admin",
@@ -7,7 +6,6 @@
   "last_name": "Admin",
   "active": true
 },{
-  "_id": "guest",
   "site": "*",
   "username": "guest",
   "passwd": "guest",
