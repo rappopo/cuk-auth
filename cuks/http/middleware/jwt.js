@@ -13,7 +13,7 @@ module.exports = function (cuk) {
       ctx.auth = ctx.auth || null
       if (!_.isEmpty(ctx.auth)) return next()
       const idColumn = helper('model:getIdColumn')('auth:user')
-      const site = _.get(ctx, 'state.site.code', '*')
+      const site = _.get(ctx, 'state.site.code', 'localhost')
       const token = detectToken(ctx, 'jwt')
       if (!token) return next()
       const payload = jwt.verify(token, cfg.method.jwt.secret)

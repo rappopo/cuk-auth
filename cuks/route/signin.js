@@ -17,7 +17,7 @@ module.exports = function (cuk) {
     handler: async ctx => {
       const cfg = config('auth')
       try {
-        const site = _.get(ctx.state, 'site.code', '*')
+        const site = _.get(ctx.state, 'site.code', 'localhost')
         const { username, passwd } = ctx.request.body
         ctx.flash.set(ctx.request.body)
         const user = await helper('auth:getValidUser')(site, username, passwd)

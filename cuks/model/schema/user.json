@@ -21,7 +21,8 @@
     "passwd": {
       "type": "string",
       "validator": {
-        "required": true
+        "required": true,
+        "isLength": { "min": 5, "max": "20" }
       }
     },
     "access_token": { "type": "text" },
@@ -29,7 +30,8 @@
       "type": "string"
     },
     "role": {
-      "type": "array"
+      "type": "array",
+      "subTypeOf": "string"
     },
     "first_name": {
       "type": "string",
@@ -38,8 +40,20 @@
         "isAlphanumeric": true
       }
     },
-    "last_name": { "type": "string" },
-    "email": { "type": "string" },
+    "last_name": {
+      "type": "string",
+      "validator": {
+        "required": true,
+        "isAlphanumeric": true
+      }
+    },
+    "email": {
+      "type": "string",
+      "validator": {
+        "required": true,
+        "isEmail": true
+      }
+    },
     "active": { "type": "boolean" }
   },
   "indexes": {

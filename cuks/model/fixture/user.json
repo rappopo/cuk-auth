@@ -1,15 +1,19 @@
 [{
-  "site": "*",
+  "id": 10,
+  "site": "localhost",
   "username": "admin",
   "passwd": "admin",
-  "first_name": "Mr",
+  "first_name": "My",
   "last_name": "Admin",
+  "email": "admin@localhost.localdomain",
   "active": true
 },{
-  "site": "*",
+  "id": 11,
+  "site": "localhost",
   "username": "guest",
   "passwd": "guest",
-  "first_name": "Mr",
+  "first_name": "My",
   "last_name": "Guest",
+  "email": "guest@localhost.localdomain",
   "active": true
 }]

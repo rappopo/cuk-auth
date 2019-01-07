@@ -28,7 +28,7 @@ module.exports = function (cuk) {
     }
     if (!cfg.allowMultiDetect && found) {
       throw helper('core:makeError')({
-        msg: 'Multiple token location detected',
+        msg: 'multiple_token_location_detected',
         status: 400
       })
     }

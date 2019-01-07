@@ -1,8 +1,6 @@
 'use strict'
 
-module.exports = function (cuk){
-  const { _ } = cuk.pkg.core.lib
-
+module.exports = function (cuk) {
   return {
     model: 'auth:user',
     middleware: 'auth:jwt, auth:basic, auth:bearer, auth:check, role:check',

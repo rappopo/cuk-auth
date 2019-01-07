@@ -7,9 +7,9 @@ module.exports = function (cuk) {
     return new Promise((resolve, reject) => {
       helper('model:find')('auth:user', { query: query })
         .then(users => {
-          if (users.data.length === 0) throw helper('core:makeError')('User not found')
+          if (users.data.length === 0) throw helper('core:makeError')('user_not_found')
           const user = users.data[0]
-          if (!user.active) throw helper('core:makeError')({ msg: 'User disabled/inactive', status: 403 })
+          if (!user.active) throw helper('core:makeError')({ msg: 'user_disabled_or_inactive', status: 403 })
           resolve(user)
         })
         .catch(reject)

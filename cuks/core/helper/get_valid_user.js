@@ -4,7 +4,7 @@ module.exports = function (cuk) {
   const { _, helper } = cuk.pkg.core.lib
   const { bcrypt } = cuk.pkg.auth.lib
 
-  return (domain, username, passwd) => {
+  return (site, username, passwd) => {
     const { CukModelValidationError } = cuk.pkg.model.lib
     const model = helper('model:get')('auth:user')
     const attrib = _.pick(model.schema.attributes, ['username', 'passwd'])
@@ -16,7 +16,7 @@ module.exports = function (cuk) {
       if (valid instanceof Error) throw valid
       let query = {
         username: username.toLowerCase(),
-        site: domain
+        site: site
       }
       model.find({ query: query })
         .then(users => {

@@ -11,7 +11,7 @@ module.exports = function (cuk) {
           const idColumn = helper('model:getIdColumn')('auth:user')
           const body = _.get(ctx, 'request.body', {})
           const user = await helper('auth:getValidUser')(
-            _.get(ctx.state, 'site.code', '*'), body.username, body.passwd
+            _.get(ctx.state, 'site.code', 'localhost'), body.username, body.passwd
           )
           const token = helper('auth:makeJwt')({
             uid: user[idColumn],

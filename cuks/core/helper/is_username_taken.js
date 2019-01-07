@@ -3,11 +3,11 @@
 module.exports = function (cuk) {
   const { helper } = cuk.pkg.core.lib
 
-  return (domain, username) => {
+  return (site, username) => {
     return new Promise((resolve, reject) => {
       let query = {
         username: username.toLowerCase(),
-        domain: domain
+        site: site
       }
       helper('model:find')('auth:user', { query: query })
         .then(users => {
