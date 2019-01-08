@@ -9,7 +9,8 @@ module.exports = function (cuk) {
     return new Promise((resolve, reject) => {
       body.username = body.username.toLowerCase()
       body.passwd = bcrypt.hashSync(body.passwd, cfg.bcryptSaltRounds || 10)
-      body.access_token = helper('core:makeHash')(_.pick(body, ['username', 'passwd']), cfg.method.bearer.algorithm || 'md5')
+      if (body.active) body.access_token = helper('core:makeHash')(_.pick(body, ['username', 'passwd']), cfg.method.bearer.algorithm || 'md5')
+      else body.access_token = helper('core:makeId')(null, 8)
       resolve({ body: _.cloneDeep(body) })
     })
   }

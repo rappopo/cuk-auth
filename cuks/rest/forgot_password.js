@@ -1,7 +1,7 @@
 'use strict'
 
 module.exports = function (cuk) {
-  const { _, helper, config } = cuk.pkg.core.lib
+  const { _, helper } = cuk.pkg.core.lib
   const { CukModelValidationError } = cuk.pkg.model.lib
 
   return {
@@ -14,21 +14,20 @@ module.exports = function (cuk) {
           body.site = _.get(ctx.state, 'site.code', 'localhost')
           let err = {}
           if (_.isEmpty(body.username)) err.username = ['required']
-          if (_.isEmpty(body.activation_code)) err.activation_code = ['required']
           if (!_.isEmpty(err)) throw new CukModelValidationError(err)
           const users = await helper('model:find')('auth:user', { query: { username: body.username }, site: body.site })
           if (users.data.length === 0) throw helper('core:makeError')('user_not_found')
           const user = users.data[0]
-          if (user.active) throw helper('core:makeError')('user_already_active')
-          if (body.activation_code !== user.access_token) throw helper('core:makeError')('invalid_activation_code')
+          const tmpPasswd = helper('core:makeId')(null, 8)
           try {
             const result = await helper('model:update')('auth:user', user[idColumn], {
-              active: true,
-              access_token: helper('core:makeHash')(_.pick(user, ['username', 'passwd']), config('auth').method.bearer.algorithm || 'md5')
+              passwd: tmpPasswd
             }, { site: body.site })
+            console.log(tmpPasswd)
+            // todo: send email
             return {
               success: true,
-              msg: 'user_activated',
+              msg: 'password_reset_and_sent_to_email',
               data: _.pick(result, [idColumn, 'created_at', 'updated_at', 'username', 'site', 'email', 'first_name', 'last_name', 'active'])
             }
           } catch (err) {
