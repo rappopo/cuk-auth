@@ -39,5 +39,6 @@
       "redirectAfterSignout": "app:get:home"
     }
   },
-  "sendActivationMailOnSignup": true
+  "sendActivationMailOnSignup": true,
+  "sendWelcomeMailOnActivation": true
 }

@@ -12,9 +12,8 @@ module.exports = function (cuk) {
       if (!_.isEmpty(ctx.auth)) return next()
       const token = detectToken(ctx, 'bearer')
       if (!token) return next()
-      const site = _.get(ctx, 'state.site.code', 'localhost')
       try {
-        const user = await getUser({ site: site, access_token: token })
+        const user = await getUser({ site: ctx.state.site.id, access_token: token })
         ctx.auth = setAuth(user, 'bearer')
         return next()
       } catch (e) {

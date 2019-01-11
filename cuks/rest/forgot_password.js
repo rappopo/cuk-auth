@@ -11,7 +11,7 @@ module.exports = function (cuk) {
         handler: async (ctx) => {
           const idColumn = helper('model:getIdColumn')('auth:user')
           const body = _.get(ctx, 'request.body', {})
-          body.site = _.get(ctx.state, 'site.code', 'localhost')
+          body.site = ctx.state.site.id
           let err = {}
           if (_.isEmpty(body.username)) err.username = ['required']
           if (!_.isEmpty(err)) throw new CukModelValidationError(err)

@@ -1,11 +1,11 @@
 'use strict'
 
 module.exports = function (cuk) {
-  const { helper, _, config } = cuk.pkg.core.lib
+  const { helper, _ } = cuk.pkg.core.lib
   const { jwt } = cuk.pkg.auth.lib
 
   return (data, secret, opts) => {
-    const cfg = _.get(config('auth'), 'method.jwt', {})
+    const cfg = helper('core:config')('auth', 'method.jwt', {})
     secret = secret || cfg.secret
     opts = opts || _.cloneDeep(cfg.opts)
     if (_.isString(opts.expiresIn)) opts.expiresIn = helper('core:parseUnitOfTime')(opts.expiresIn, true)
