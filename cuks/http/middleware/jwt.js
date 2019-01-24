@@ -17,8 +17,9 @@ module.exports = function (cuk) {
       if (!token) return next()
       const payload = jwt.verify(token, cfg.method.jwt.secret)
       const user = await getUser({ site: ctx.state.site.id, username: payload.uname })
+
       const hash = helper('core:makeHash')([user[idColumn], user.username, user.passwd])
-      if (payload.hash !== hash) throw helper('core:makeError')({ msg: 'Token expired/invalid', status: 403 })
+      if (payload.hash !== hash) throw helper('core:makeError')({ msg: 'token_invalid_or_expired', status: 403 })
       ctx.auth = setAuth(user, 'jwt')
       return next()
     }

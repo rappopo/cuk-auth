@@ -1,13 +1,11 @@
 'use strict'
 
 module.exports = function (cuk) {
-  const { _, helper } = cuk.pkg.core.lib
+  const { helper } = cuk.pkg.core.lib
   const idColumn = helper('model:getIdColumn')('auth:user')
   return {
-    middleware: 'auth:jwt, auth:basic, auth:bearer, auth:check, role:check',
-    role: {
-      resourcePossession: 'own'
-    },
+    middleware: ['auth:jwt', 'auth:basic', 'auth:bearer', 'auth:check', { name: 'role:check', skipMissing: true }],
+    options: { role: { resourcePossession: 'own' } },
     method: {
       findOneSelf: ctx => {
         ctx.state._id = ctx.auth.user[idColumn]

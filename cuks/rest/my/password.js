@@ -33,10 +33,8 @@ module.exports = function (cuk) {
   }
 
   return {
-    middleware: 'auth:jwt, auth:basic, auth:bearer, auth:check, role:check',
-    role: {
-      resourcePossession: 'own'
-    },
+    middleware: ['auth:jwt', 'auth:basic', 'auth:bearer', 'auth:check', { name: 'role:check', skipMissing: true }],
+    options: { role: { resourcePossession: 'own' } },
     method: {
       replaceSelf: changePassword,
       modifySelf: changePassword

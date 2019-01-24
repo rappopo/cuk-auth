@@ -1,28 +1,20 @@
 'use strict'
 
 module.exports = function (cuk) {
-  return (ac) => {
-    ac
-      .grant('user')
-      .updateOwn('rest:myPassword')
-      .readOwn('rest:myProfile')
-      .updateOwn('rest:myProfile')
+  const { helper } = cuk.pkg.core.lib
 
-      .readOwn('route:myProfile')
-      .updateOwn('route:myProfile')
-      .readOwn('route:myPassword')
-      .updateOwn('route:myPassword')
+  return (ac) => {
+    const access = ac.grant('user')
+    access
+      .updateOwn('rest:auth:replaceSelf:myPassword')
+      .updateOwn('rest:auth:modifySelf:myPassword')
+      .readOwn('rest:auth:findOneSelf:myProfile')
+      .updateOwn('rest:auth:replaceSelf:myProfile')
+      .readOwn('rest:auth:find:myPermission')
 
       .grant('admin')
       .extend('user')
-      .createAny('rest:manageUser')
-      .readAny('rest:manageUser')
-      .updateAny('rest:manageUser')
-      .deleteAny('rest:manageUser')
 
-      .createAny('route:manageUser')
-      .readAny('route:manageUser')
-      .updateAny('route:manageUser')
-      .deleteAny('route:manageUser')
+    helper('role:addRestAccess')(access, 'auth', 'manageUser')
   }
 }

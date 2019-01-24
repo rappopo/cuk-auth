@@ -16,7 +16,7 @@ module.exports = function (cuk) {
       const [username, passwd] = Buffer.from(token, 'base64').toString().split(':')
       try {
         const user = await getUser({ site: ctx.state.site.id, username: username })
-        if (!bcrypt.compareSync(passwd, user.passwd)) throw helper('core:makeError')({ msg: 'Wrong password', status: 403 })
+        if (!bcrypt.compareSync(passwd, user.passwd)) throw helper('core:makeError')({ msg: 'wrong_password', status: 403 })
         ctx.auth = setAuth(user, 'basic')
         return next()
       } catch (e) {

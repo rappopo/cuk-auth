@@ -18,15 +18,14 @@ module.exports = function (cuk) {
         username: username.toLowerCase(),
         site: site
       }
-      model.find({ query: query })
-        .then(users => {
-          if (users.data.length === 0) throw new CukModelValidationError({ username: ['notFound'] })
-          const user = users.data[0]
-          if (!user.active) throw helper('core:makeError')('User disabled/inactive')
-          if (!bcrypt.compareSync(passwd, user.passwd)) throw new CukModelValidationError({ passwd: ['mismatch'] })
-          resolve(user)
-        })
-        .catch(reject)
+      let user
+      model.find({ query: query }).then(users => {
+        if (users.data.length === 0) throw new CukModelValidationError({ username: ['notFound'] })
+        user = users.data[0]
+        if (!user.active) throw helper('core:makeError')('user_disabled_or_inactive')
+        if (!bcrypt.compareSync(passwd, user.passwd)) throw new CukModelValidationError({ passwd: ['mismatch'] })
+        resolve(user)
+      }).catch(reject)
     })
   }
 }
