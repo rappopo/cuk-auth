@@ -28,7 +28,10 @@ module.exports = function (cuk) {
                   }
                   query._id = helper('core:makeHash')(query)
                   const perm = ac.can(role)[action](rsc)
-                  if (perm.granted) perms.push(query)
+                  if (perm.granted) {
+                    query.attributes = perm.attributes
+                    perms.push(query)
+                  }
                 })
               })
             })

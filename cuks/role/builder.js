@@ -4,16 +4,19 @@ module.exports = function (cuk) {
   const { helper } = cuk.pkg.core.lib
 
   return (ac) => {
-    let access = ac.grant('user')
-    access
+    ac.grant('user')
       .updateOwn('rest:auth:replaceSelf:myPassword')
       .updateOwn('rest:auth:modifySelf:myPassword')
-      .readOwn('rest:auth:findOneSelf:myProfile')
-      .updateOwn('rest:auth:replaceSelf:myProfile')
+      .readOwn('rest:auth:findOneSelf:myProfile', ['*', '!passwd'])
+      .updateOwn('rest:auth:modifySelf:myProfile', ['*', '!passwd'])
       .readOwn('rest:auth:find:myPermission')
 
-    access = ac.grant('admin')
+    ac.grant('guest')
+      .readOwn('rest:auth:findOneSelf:myProfile', ['*', '!group_id', '!access_token', '!passwd', '!role'])
+      .readOwn('rest:auth:find:myPermission')
+
+    let access = ac.grant('admin')
       .extend('user')
-    helper('role:addRestAccess')(access, 'auth', 'manageUser')
+    helper('role:addRestAccess')(access, 'auth', 'manageUser', ['*', '!passwd'])
   }
 }
