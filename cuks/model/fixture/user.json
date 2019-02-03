@@ -1,6 +1,6 @@
 [{
   "id": 10,
-  "site": "default",
+  "site_id": "default",
   "username": "admin",
   "passwd": "admin",
   "first_name": "My",
@@ -9,7 +9,7 @@
   "active": true
 },{
   "id": 11,
-  "site": "default",
+  "site_id": "default",
   "username": "guest",
   "passwd": "guest",
   "first_name": "My",

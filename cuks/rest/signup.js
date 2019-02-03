@@ -25,7 +25,7 @@ module.exports = function (cuk) {
           let user = {}
           return new Promise((resolve, reject) => {
             helper('model:find')('role:group', {
-              site: ctx.state.site.id,
+              site_id: ctx.state.site.id,
               query: {
                 name: 'user'
               },
@@ -34,7 +34,7 @@ module.exports = function (cuk) {
               body.group_id = result.data.length > 0 ? result.data[0][idColGroup] : null
               body.active = false
               return helper('model:create')('auth:user', body, {
-                site: ctx.state.site.id
+                site_id: ctx.state.site.id
               })
             }).then(result => {
               user = result.data

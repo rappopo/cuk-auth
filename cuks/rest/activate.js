@@ -22,7 +22,7 @@ module.exports = function (cuk) {
         handler: ctx => {
           const idCol = helper('model:getidCol')('auth:user')
           const body = _.get(ctx, 'request.body', {})
-          body.site = ctx.state.site.id
+          body.site_id = ctx.state.site.id
           let err = {}
           let user = {}
           if (_.isEmpty(body.username)) err.username = ['required']
@@ -33,7 +33,7 @@ module.exports = function (cuk) {
               query: {
                 username: body.username
               },
-              site: body.site
+              site: body.site_id
             }).then(result => {
               if (result.data.length === 0) throw helper('core:makeError')('user_not_found')
               user = result.data[0]
@@ -43,7 +43,7 @@ module.exports = function (cuk) {
                 active: true,
                 access_token: helper('core:makeHash')(_.pick(user, ['username', 'passwd']), helper('core:config')('auth', '.method.bearer.algorithm', 'md5'))
               }, {
-                site: body.site
+                site: body.site_id
               })
             }).then(result => {
               user = result.data

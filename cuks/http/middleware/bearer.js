@@ -13,7 +13,7 @@ module.exports = function (cuk) {
       const token = detectToken(ctx, 'bearer')
       if (!token) return next()
       try {
-        const user = await getUser({ site: ctx.state.site.id, access_token: token })
+        const user = await getUser({ site_id: ctx.state.site.id, access_token: token })
         ctx.auth = setAuth(user, 'bearer')
         return next()
       } catch (e) {

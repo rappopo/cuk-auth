@@ -7,7 +7,7 @@ module.exports = function (cuk) {
     return new Promise((resolve, reject) => {
       let query = {
         username: username.toLowerCase(),
-        site: site
+        site_id: site
       }
       helper('model:find')('auth:user', { query: query })
         .then(users => {

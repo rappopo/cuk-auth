@@ -11,24 +11,23 @@ module.exports = function (cuk) {
         handler: async (ctx) => {
           const idColumn = helper('model:getIdColumn')('auth:user')
           const body = _.get(ctx, 'request.body', {})
-          body.site = ctx.state.site.id
+          body.site_id = ctx.state.site.id
           let err = {}
           if (_.isEmpty(body.username)) err.username = ['required']
           if (!_.isEmpty(err)) throw new CukModelValidationError(err)
-          const users = await helper('model:find')('auth:user', { query: { username: body.username }, site: body.site })
+          const users = await helper('model:find')('auth:user', { query: { username: body.username }, site: body.site_id })
           if (users.data.length === 0) throw helper('core:makeError')('user_not_found')
           const user = users.data[0]
           const tmpPasswd = helper('core:makeId')(null, 8)
           try {
             const result = await helper('model:update')('auth:user', user[idColumn], {
               passwd: tmpPasswd
-            }, { site: body.site })
-            console.log(tmpPasswd)
+            }, { site: body.site_id })
             // todo: send email
             return {
               success: true,
               msg: 'password_reset_and_sent_to_email',
-              data: _.pick(result, [idColumn, 'created_at', 'updated_at', 'username', 'site', 'email', 'first_name', 'last_name', 'active'])
+              data: _.pick(result, [idColumn, 'created_at', 'updated_at', 'username', 'site_id', 'email', 'first_name', 'last_name', 'active'])
             }
           } catch (err) {
             throw err
